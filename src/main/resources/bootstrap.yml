@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: dev
+    stream:
+      bindings:
+        myMsgIn:
+          group: order
+          content-type: application/json
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka/
+zuul:
+  routes:
+    # /myProduct/product/list -> /product/product/list
+#    myProduct:
+#      path: /myProduct/**
+#      serviceId: product
+    #简洁写法
+      product: /myProduct/**
+  # 防止接口暴露给外网，只能在服务间调用
+#  ignored-patterns:
+#    - /myProduct/product/list
+#    - /product/product/list
+#    - /**/product/list 可以将上面两个请求，合并成一个，采用通配符形式
+management:
+  security:
+    enabled: false
