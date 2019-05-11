@@ -19,11 +19,18 @@ eureka:
 zuul:
   routes:
     # /myProduct/product/list -> /product/product/list
-#    myProduct:
-#      path: /myProduct/**
-#      serviceId: product
-    #简洁写法
-      product: /myProduct/**
+    myProduct:
+      path: /myProduct/**
+      serviceId: product
+    myUser:
+      path: /myUser/**
+      serviceId: user
+      sensitiveHeader:
+#    #简洁写法
+#      product: /myProduct/**
+
+  # 全部服务都可以忽略敏感头，都可以传递cookie
+  sensitive-headers:
   # 防止接口暴露给外网，只能在服务间调用
 #  ignored-patterns:
 #    - /myProduct/product/list
