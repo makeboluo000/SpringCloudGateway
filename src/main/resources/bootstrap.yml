@@ -39,3 +39,10 @@ zuul:
 management:
   security:
     enabled: false
+hystrix:
+  commond:
+    default: #配置全局的
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
